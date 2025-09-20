@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-// --- Constants ---
 #define MAX_AIRPORTS 20
 #define MAX_NAME_LEN 50
 #define INF 99999
 
-// --- Global Variables ---
 int graph[MAX_AIRPORTS][MAX_AIRPORTS];
 char airports[MAX_AIRPORTS][MAX_NAME_LEN];
 int airportCount = 0;
@@ -61,8 +59,6 @@ void getString(const char* prompt, char* buffer, int size) {
     }
 }
 
-// --- Core Graph Functions ---
-
 void initGraph() {
     for (int i = 0; i < airportCount; i++) {
         for (int j = 0; j < airportCount; j++) {
@@ -100,9 +96,8 @@ int getAirportIndex(const char* name) {
             return i;
         }
     }
-    return -1; // Not found
+    return -1;
 }
-
 // --- Dijkstra's Algorithm ---
 
 void dijkstra(int src, int dest) {
@@ -127,7 +122,7 @@ void dijkstra(int src, int dest) {
             }
         }
 
-        if (u == -1) break; // No path or all reachable nodes visited
+        if (u == -1) break; 
         visited[u] = 1;
 
         for (int v = 0; v < airportCount; v++) {
@@ -160,9 +155,6 @@ void dijkstra(int src, int dest) {
     printf("\n");
 }
 
-// --- Main Program Logic ---
-
-
 int showMenu() {
     printf("\nMenu:\n"
            "1. Add Flight\n"
@@ -193,7 +185,6 @@ void findRoute() {
 
     dijkstra(s, d);
 }
-
 
 void addNewFlight() {
     char src[MAX_NAME_LEN], dest[MAX_NAME_LEN];
@@ -263,4 +254,5 @@ int main() {
     }
     
     return 0;
+
 }
